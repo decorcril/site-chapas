@@ -1,0 +1,424 @@
+/* =========================================================
+   Decorcril – estilos do site
+   Para trocar a cor da marca, altere apenas o bloco :root
+   ========================================================= */
+
+:root {
+  /* Cores da marca (azul provisório – substituir pelo oficial) */
+  --marca: #0a5cc2;
+  --marca-rgb: 10, 92, 194;
+  --marca-escura: #07408a;
+  --marca-clara: #e8f1fc;
+
+  /* Cores de apoio */
+  --texto: #1c2733;
+  --texto-suave: #5b6876;
+  --fundo-alt: #f4f7fb;
+  --borda: #dde4ec;
+  --whatsapp: #25d366;
+
+  /* Integração com o Bootstrap */
+  --bs-primary: var(--marca);
+  --bs-primary-rgb: var(--marca-rgb);
+  --bs-link-color: var(--marca);
+  --bs-link-color-rgb: var(--marca-rgb);
+  --bs-link-hover-color: var(--marca-escura);
+  --bs-body-color: var(--texto);
+  --bs-body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-border-color: var(--borda);
+
+  --altura-topo: 72px;
+}
+
+/* ---------- Base ---------- */
+
+html {
+  scroll-padding-top: var(--altura-topo); /* menu fixo não cobre o título ao pular para a seção */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid rgba(var(--marca-rgb), 0.45);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* ---------- Botões (cor da marca) ---------- */
+
+.btn {
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--marca);
+  --bs-btn-border-color: var(--marca);
+  --bs-btn-hover-bg: var(--marca-escura);
+  --bs-btn-hover-border-color: var(--marca-escura);
+  --bs-btn-active-bg: var(--marca-escura);
+  --bs-btn-active-border-color: var(--marca-escura);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--marca);
+  --bs-btn-border-color: var(--marca);
+  --bs-btn-hover-bg: var(--marca);
+  --bs-btn-hover-border-color: var(--marca);
+  --bs-btn-active-bg: var(--marca-escura);
+  --bs-btn-active-border-color: var(--marca-escura);
+}
+
+/* ---------- Topo ---------- */
+
+.site-header .navbar {
+  min-height: var(--altura-topo);
+}
+
+.site-header .nav-link {
+  font-weight: 500;
+  color: var(--texto);
+}
+
+.site-header .nav-link:hover {
+  color: var(--marca);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 4.5rem 0 5rem;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-size: clamp(2.3rem, 1.6rem + 3vw, 3.8rem);
+  max-width: 14ch;
+  margin-bottom: 1.25rem;
+  color: var(--marca-escura);
+}
+
+.hero-text {
+  font-size: 1.15rem;
+  color: var(--texto-suave);
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+
+/* Mascote apoiado sobre duas "chapas" de acrílico translúcidas */
+.hero-mascote {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 320px;
+  padding: 2rem 1rem 0;
+}
+
+.hero-mascote::before,
+.hero-mascote::after {
+  content: "";
+  position: absolute;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.hero-mascote::before {
+  inset: 12% 6% 0 14%;
+  background: rgba(var(--marca-rgb), 0.12);
+  transform: rotate(-6deg);
+}
+
+.hero-mascote::after {
+  inset: 4% 16% 6% 4%;
+  background: rgba(var(--marca-rgb), 0.08);
+  transform: rotate(4deg);
+}
+
+.hero-mascote img {
+  position: relative;
+  z-index: 1;
+  max-height: 440px;
+  width: auto;
+}
+
+/* ---------- Seções ---------- */
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-alt {
+  background: var(--fundo-alt);
+}
+
+.section-head {
+  max-width: 60ch;
+  margin-bottom: 2.5rem;
+}
+
+.section-head p {
+  color: var(--texto-suave);
+  margin-bottom: 0;
+}
+
+/* ---------- Cards de produto (gerados pelo main.js) ---------- */
+
+.produto-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.produto-card:hover {
+  border-color: rgba(var(--marca-rgb), 0.5);
+}
+
+.produto-img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  background: var(--fundo-alt);
+}
+
+.produto-img-vazia {
+  display: grid;
+  place-items: center;
+  color: var(--texto-suave);
+  font-size: 2.5rem;
+}
+
+.produto-corpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.25rem;
+}
+
+.produto-nome {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.produto-descricao {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.produto-rotulo {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--texto-suave);
+  margin-bottom: 0.4rem;
+}
+
+.produto-cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cor {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.produto-espessuras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.espessura {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  background: var(--marca-clara);
+  color: var(--marca-escura);
+}
+
+.produto-card .btn {
+  margin-top: auto;
+  width: 100%;
+}
+
+.catalogo-aviso {
+  margin: 1.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  opacity: 0.75;
+  text-align: right;
+}
+
+/* ---------- Sobre ---------- */
+
+.diferenciais li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.diferenciais li:last-child {
+  border-bottom: 0;
+}
+
+.diferenciais i {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--marca);
+  font-size: 1.25rem;
+}
+
+/* ---------- Contato ---------- */
+
+.contato-mascote {
+  background: var(--marca-clara);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+}
+
+.contato-mascote p {
+  font-weight: 500;
+}
+
+.contato-mascote-img {
+  width: 96px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.contato-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.contato-lista i {
+  color: var(--marca);
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.contato-lista a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.contato-lista a:hover {
+  color: var(--marca);
+  text-decoration: underline;
+}
+
+.mapa {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--borda);
+}
+
+.mapa iframe {
+  border: 0;
+}
+
+/* ---------- Rodapé ---------- */
+
+.site-footer {
+  background: var(--marca-escura);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.site-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Botão flutuante de WhatsApp ---------- */
+
+.whatsapp-float {
+  position: fixed;
+  right: calc(1.25rem + env(safe-area-inset-right, 0px));
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 1030;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: #fff;
+  font-size: 1.75rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-float:hover {
+  color: #fff;
+  filter: brightness(0.95);
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 991.98px) {
+  .site-header .navbar-nav {
+    padding: 1rem 0;
+  }
+
+  .hero {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .hero-mascote {
+    min-height: 240px;
+  }
+
+  .hero-mascote img {
+    max-height: 280px;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+}
